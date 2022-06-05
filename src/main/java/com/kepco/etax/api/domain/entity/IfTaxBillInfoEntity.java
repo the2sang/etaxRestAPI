@@ -16,21 +16,20 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @Entity
-@IdClass(IfTaxBillInfoKey.class)
 @Table(name = "IF_TAX_BILL_INFO")
 public class IfTaxBillInfoEntity {
 
-    @Id
-    @Column(name = "REL_SYSTEM_ID")
-    private String relSystemId;
-
-    @Id
-    @Column(name = "JOB_GUB_CODE")
-    private String jobGubCode;
-
-    @Id
-    @Column(name = "MANAGE_ID")
-    private String manageId;
+//    @Id
+//    @Column(name = "REL_SYSTEM_ID")
+//    private String relSystemId;
+//
+//    @Id
+//    @Column(name = "JOB_GUB_CODE")
+//    private String jobGubCode;
+//
+//    @Id
+//    @Column(name = "MANAGE_ID")
+//    private String manageId;
 
 //    @OneToMany(mappedBy = "ifTaxBillInfoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<IfTaxBillItemListEntity> ifTaxBillItemListEntities = new ArrayList<>();
@@ -39,6 +38,9 @@ public class IfTaxBillInfoEntity {
 //        ifTaxBillItemListEntities.add(ifTaxBillItemListEntity);
 //        //ifTaxBillItemListEntity.setIfTaxBillInfoEntity(this);
 //    }
+
+    @EmbeddedId
+    private IfTaxBillInfoKey ifTaxBillInfoKey;
 
     @Column(name = "ADD_TAX_YN")
     private String addTaxYn;
