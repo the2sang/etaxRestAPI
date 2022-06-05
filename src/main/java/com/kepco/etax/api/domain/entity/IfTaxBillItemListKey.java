@@ -1,26 +1,23 @@
 package com.kepco.etax.api.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import java.io.Serializable;
 import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
+@Getter
 public class IfTaxBillItemListKey implements Serializable {
 
-    @Column(name = "REL_SYSTEM_ID")
-    private String relSystemId;
-
-    @Column(name = "JOB_GUB_CODE")
-    private String jobGubCode;
-
-    @Column(name = "MANAGE_ID")
-    private String manageId;
+    @Embedded
+    private IfTaxBillInfoKey ifTaxBillInfoKey;
 
     @Column(name = "SEQ_NO")
     private long seqNo;
@@ -31,15 +28,15 @@ public class IfTaxBillItemListKey implements Serializable {
         if (object == null || getClass() != object.getClass()) return false;
         IfTaxBillItemListKey ifTaxBillItemListKey = (IfTaxBillItemListKey) object;
         return (
-            Objects.equals(relSystemId, ifTaxBillItemListKey.relSystemId) &&
-            Objects.equals(jobGubCode, ifTaxBillItemListKey.jobGubCode) &&
-            Objects.equals(manageId, ifTaxBillItemListKey.manageId) &&
+            Objects.equals(ifTaxBillInfoKey.getRelSystemId(), ifTaxBillItemListKey.getIfTaxBillInfoKey().getRelSystemId()) &&
+            Objects.equals(ifTaxBillInfoKey.getJobGubCode(), ifTaxBillItemListKey.getIfTaxBillInfoKey().getJobGubCode()) &&
+            Objects.equals(ifTaxBillInfoKey.getManageId(), ifTaxBillItemListKey.getIfTaxBillInfoKey().getManageId()) &&
             Objects.equals(seqNo, ifTaxBillItemListKey.seqNo)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(relSystemId, jobGubCode, manageId, seqNo);
+        return Objects.hash(ifTaxBillInfoKey.getRelSystemId(), ifTaxBillInfoKey.getJobGubCode(), ifTaxBillInfoKey.getManageId(), seqNo);
     }
 }

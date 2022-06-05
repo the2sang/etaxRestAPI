@@ -40,7 +40,7 @@ public class EtaxSalesService {
         int seqNo = 1;
         for (IfTaxBillItemListRequest item: request.getItemListRequest()) {
             IfTaxBillItemListEntity listEntity = new IfTaxBillItemListEntity();
-            IfTaxBillItemListKey listKey = new IfTaxBillItemListKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId(), seqNo);
+            IfTaxBillItemListKey listKey = new IfTaxBillItemListKey(parentKey, seqNo);
             listEntity.setIfTaxBillItemListKey(listKey);
             BeanUtils.copyProperties(item, listEntity);
             ifTaxBillItemListRepository.save(listEntity);
@@ -51,7 +51,8 @@ public class EtaxSalesService {
         return savedIfTaxBillInfoEntity;
     }
 
-    public IfTaxBillInfoEntity createSalesTaxEmbeddedId(IfTaxBillInfoRequest request) {
+
+    public IfTaxBillInfoEntity createSalesTaxParentTable(IfTaxBillInfoRequest request) {
 
         IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
 

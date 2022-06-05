@@ -22,9 +22,9 @@ public class EtaxSalesController {
         return ResponseEntity.ok(etaxSalesService.createSalesTax(request));
     }
 
-    @PostMapping("/createSaleTaxEmbeddedId")
-    public ResponseEntity<IfTaxBillInfoEntity> createCreateSaleTax2 (@RequestBody IfTaxBillInfoRequest request) {
-        return ResponseEntity.ok(etaxSalesService.createSalesTaxEmbeddedId(request));
+    @PostMapping("/createSaleTaxParentTable")
+    public ResponseEntity<IfTaxBillInfoEntity> createCreateSaleTaxEmbedded (@RequestBody IfTaxBillInfoRequest request) {
+        return ResponseEntity.ok(etaxSalesService.createSalesTaxParentTable(request));
     }
 
 }

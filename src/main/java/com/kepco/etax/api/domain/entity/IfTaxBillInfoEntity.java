@@ -1,10 +1,9 @@
 package com.kepco.etax.api.domain.entity;
 
+import com.kepco.etax.api.domain.request.IfTaxBillItemListRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,31 +12,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table(name = "IF_TAX_BILL_INFO")
 public class IfTaxBillInfoEntity {
 
-//    @Id
-//    @Column(name = "REL_SYSTEM_ID")
-//    private String relSystemId;
-//
-//    @Id
-//    @Column(name = "JOB_GUB_CODE")
-//    private String jobGubCode;
-//
-//    @Id
-//    @Column(name = "MANAGE_ID")
-//    private String manageId;
-
-//    @OneToMany(mappedBy = "ifTaxBillInfoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<IfTaxBillItemListEntity> ifTaxBillItemListEntities = new ArrayList<>();
-//
-//    public void addIfTaxBillItemListEntity(IfTaxBillItemListEntity ifTaxBillItemListEntity) {
-//        ifTaxBillItemListEntities.add(ifTaxBillItemListEntity);
-//        //ifTaxBillItemListEntity.setIfTaxBillInfoEntity(this);
-//    }
 
     @EmbeddedId
     private IfTaxBillInfoKey ifTaxBillInfoKey;
