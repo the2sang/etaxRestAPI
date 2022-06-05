@@ -27,7 +27,7 @@ public class EtaxSalesService {
     private final IfTaxBillResultInfoRepository ifTaxBillResultInfoRepository;
 
 
-    public IfTaxBillInfoEntity createSalesTax(IfTaxBillInfoRequest request) {
+    public IfTaxBillInfoKey createSalesTax(IfTaxBillInfoRequest request) {
         IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
 
         IfTaxBillInfoKey parentKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
@@ -38,7 +38,7 @@ public class EtaxSalesService {
         IfTaxBillInfoEntity savedIfTaxBillInfoEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
 
         int seqNo = 1;
-        for (IfTaxBillItemListRequest item: request.getItemListRequest()) {
+        for (IfTaxBillItemListRequest item: request.getItemList()) {
             IfTaxBillItemListEntity listEntity = new IfTaxBillItemListEntity();
             IfTaxBillItemListKey listKey = new IfTaxBillItemListKey(parentKey, seqNo);
             listEntity.setIfTaxBillItemListKey(listKey);
@@ -48,11 +48,11 @@ public class EtaxSalesService {
             seqNo++;
         }
 
-        return savedIfTaxBillInfoEntity;
+        return savedIfTaxBillInfoEntity.getIfTaxBillInfoKey();
     }
 
 
-    public IfTaxBillInfoEntity createSalesTaxParentTable(IfTaxBillInfoRequest request) {
+    public IfTaxBillInfoKey createSalesTaxParentTable(IfTaxBillInfoRequest request) {
 
         IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
 
@@ -65,7 +65,7 @@ public class EtaxSalesService {
 
         IfTaxBillInfoEntity returnEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
 
-        return returnEntity;
+        return returnEntity.getIfTaxBillInfoKey();
 
 
     }

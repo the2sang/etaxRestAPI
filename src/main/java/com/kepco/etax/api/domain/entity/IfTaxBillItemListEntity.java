@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "IF_TAX_BILL_ITEM_LIST")
 public class IfTaxBillItemListEntity implements Serializable {
 

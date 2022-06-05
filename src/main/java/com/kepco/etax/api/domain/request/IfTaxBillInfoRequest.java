@@ -80,6 +80,6 @@ public class IfTaxBillInfoRequest {
     private String taxTypeCode;
     private String attachFile;
 
-    private List<IfTaxBillItemListRequest> itemListRequest = new ArrayList<>();
+    private List<IfTaxBillItemListRequest> itemList = new ArrayList<>();
 
 }

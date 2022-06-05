@@ -4,6 +4,7 @@ import com.kepco.etax.api.domain.request.IfTaxBillItemListRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "IF_TAX_BILL_INFO")
 public class IfTaxBillInfoEntity {
