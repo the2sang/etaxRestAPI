@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -14,33 +15,46 @@ import javax.persistence.*;
 @Entity
 @IdClass(IfTaxBillItemListKey.class)
 @Table(name = "IF_TAX_BILL_ITEM_LIST")
-public class IfTaxBillItemListEntity {
+public class IfTaxBillItemListEntity implements Serializable {
 
-    //    @Id
-    //    @Column(name = "REL_SYSTEM_ID")
-    //    private String relSystemId;
-    //
-    //    @Id
-    //    @Column(name = "JOB_GUB_CODE")
-    //    private String jobGubCode;
-    //
-    //    @Id
-    //    @Column(name = "MANAGE_ID")
-    //    private String manageId;
+//    @Id
+//    @ManyToOne
+//    @JoinColumns(
+//        {
+//            @JoinColumn(name = "REL_SYSTEM_ID", insertable = false, updatable = false),
+//            @JoinColumn(name = "JOB_GUB_CODE", insertable = false, updatable = false),
+//            @JoinColumn(name = "MANAGE_ID", insertable = false, updatable = false)
+//        }
+//    )
+//    private IfTaxBillInfoEntity ifTaxBillInfoEntity;
+//
+//    public IfTaxBillItemListEntity(String relSystemId, String jobGubCode, String manageId) {
+//
+//        this.ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
+//        this.ifTaxBillInfoEntity.setRelSystemId(relSystemId);
+//        this.ifTaxBillInfoEntity.setJobGubCode(jobGubCode);
+//        this.ifTaxBillInfoEntity.setManageId(manageId);
+//    }
+
+
+
+    @Id
+    @Column(name = "REL_SYSTEM_ID")
+    private String relSystemId;
+
+    @Id
+    @Column(name = "JOB_GUB_CODE")
+    private String jobGubCode;
+
+    @Id
+    @Column(name = "MANAGE_ID")
+    private String manageId;
 
     @Id
     @Column(name = "SEQ_NO")
     private long seqNo;
 
-    @ManyToOne
-    @JoinColumns(
-        {
-            @JoinColumn(name = "REL_SYSTEM_ID", referencedColumnName = "REL_SYSTEM_ID"),
-            @JoinColumn(name = "JOB_GUB_CODE", referencedColumnName = "JOB_GUB_CODE"),
-            @JoinColumn(name = "MANAGE_ID", referencedColumnName = "MANAGE_ID"),
-        }
-    )
-    private IfTaxBillInfoEntity ifTaxBillInfoEntity;
+
 
     @Column(name = "PURCHASE_DAY")
     private String purchaseDay;

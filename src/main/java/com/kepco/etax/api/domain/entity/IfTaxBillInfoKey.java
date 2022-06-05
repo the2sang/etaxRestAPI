@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class IfTaxBillInfoKey implements Serializable {
 
     private String relSystemId;

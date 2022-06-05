@@ -4,9 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +32,13 @@ public class IfTaxBillInfoEntity {
     @Column(name = "MANAGE_ID")
     private String manageId;
 
-    @OneToMany(mappedBy = "ifTaxBillInfoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<IfTaxBillItemListEntity> ifTaxBillItemListEntities = new ArrayList<>();
-
-    public void addIfTaxBillItemListEntity(IfTaxBillItemListEntity ifTaxBillItemListEntity) {
-        ifTaxBillItemListEntities.add(ifTaxBillItemListEntity);
-        //ifTaxBillItemListEntity.setIfTaxBillInfoEntity(this);
-    }
+//    @OneToMany(mappedBy = "ifTaxBillInfoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<IfTaxBillItemListEntity> ifTaxBillItemListEntities = new ArrayList<>();
+//
+//    public void addIfTaxBillItemListEntity(IfTaxBillItemListEntity ifTaxBillItemListEntity) {
+//        ifTaxBillItemListEntities.add(ifTaxBillItemListEntity);
+//        //ifTaxBillItemListEntity.setIfTaxBillInfoEntity(this);
+//    }
 
     @Column(name = "ADD_TAX_YN")
     private String addTaxYn;
@@ -196,13 +197,13 @@ public class IfTaxBillInfoEntity {
     private String flg;
 
     @Column(name = "REGIST_DT")
-    private Date registDt;
+    private LocalDateTime registDt;
 
     @Column(name = "MODIFY_DT")
-    private Date modifyDt;
+    private LocalDateTime modifyDt;
 
     @Column(name = "CANCEL_DT")
-    private Date cancelDt;
+    private LocalDateTime cancelDt;
 
     @Column(name = "EAI_STAT")
     private String eaiStat;
