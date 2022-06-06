@@ -10,10 +10,10 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "IF_TAX_BILL_RESULT_INFO")
-public class IfTaxBillResultInfoEntity {
+public class IfTaxBillResultInfo {
 
    @EmbeddedId
-   IfTaxBillResultInfoKey ifTaxBillResultInfoKey;
+   IfTaxBillResultInfoId id;
 
     @Column(name = "STATUS_DESC")
     private String statusDesc;

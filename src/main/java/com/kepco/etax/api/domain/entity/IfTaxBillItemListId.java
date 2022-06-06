@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,7 +14,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Embeddable
 @Getter
-public class IfTaxBillInfoKey implements Serializable {
+public class IfTaxBillItemListId implements Serializable {
 
     @Column(name = "REL_SYSTEM_ID")
     private String relSystemId;
@@ -26,20 +25,24 @@ public class IfTaxBillInfoKey implements Serializable {
     @Column(name = "MANAGE_ID")
     private String manageId;
 
+    @Column(name = "SEQ_NO")
+    private long seqNo;
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        IfTaxBillInfoKey ifTaxBillInfoKey = (IfTaxBillInfoKey) object;
+        IfTaxBillItemListId objectId = (IfTaxBillItemListId) object;
         return (
-            Objects.equals(relSystemId, ifTaxBillInfoKey.relSystemId) &&
-            Objects.equals(jobGubCode, ifTaxBillInfoKey.jobGubCode) &&
-            Objects.equals(manageId, ifTaxBillInfoKey.manageId)
+            Objects.equals(relSystemId, objectId.getRelSystemId()) &&
+            Objects.equals(jobGubCode, objectId.getJobGubCode()) &&
+            Objects.equals(manageId, objectId.getManageId()) &&
+            Objects.equals(seqNo, objectId.seqNo)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(relSystemId, jobGubCode, manageId);
+        return Objects.hash(relSystemId, jobGubCode, manageId, seqNo);
     }
 }

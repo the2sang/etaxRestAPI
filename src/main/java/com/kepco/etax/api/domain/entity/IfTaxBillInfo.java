@@ -1,6 +1,5 @@
 package com.kepco.etax.api.domain.entity;
 
-import com.kepco.etax.api.domain.request.IfTaxBillItemListRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,8 +7,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -17,11 +14,11 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "IF_TAX_BILL_INFO")
-public class IfTaxBillInfoEntity {
+public class IfTaxBillInfo {
 
 
     @EmbeddedId
-    private IfTaxBillInfoKey ifTaxBillInfoKey;
+    private IfTaxBillInfoId id;
 
     @Column(name = "ADD_TAX_YN")
     private String addTaxYn;

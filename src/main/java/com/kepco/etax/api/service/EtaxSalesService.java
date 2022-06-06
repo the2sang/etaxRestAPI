@@ -1,10 +1,10 @@
 package com.kepco.etax.api.service;
 
 
-import com.kepco.etax.api.domain.entity.IfTaxBillInfoEntity;
-import com.kepco.etax.api.domain.entity.IfTaxBillInfoKey;
-import com.kepco.etax.api.domain.entity.IfTaxBillItemListEntity;
-import com.kepco.etax.api.domain.entity.IfTaxBillItemListKey;
+import com.kepco.etax.api.domain.entity.IfTaxBillInfo;
+import com.kepco.etax.api.domain.entity.IfTaxBillInfoId;
+import com.kepco.etax.api.domain.entity.IfTaxBillItemList;
+import com.kepco.etax.api.domain.entity.IfTaxBillItemListId;
 import com.kepco.etax.api.domain.request.IfTaxBillInfoRequest;
 import com.kepco.etax.api.domain.request.IfTaxBillItemListRequest;
 import com.kepco.etax.api.repository.IfTaxBillInfoRepository;
@@ -15,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,47 +28,65 @@ public class EtaxSalesService {
     private final IfTaxBillResultInfoRepository ifTaxBillResultInfoRepository;
 
 
-    public IfTaxBillInfoKey createSalesTax(IfTaxBillInfoRequest request) {
-        IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
+    public IfTaxBillInfoId createSalesTax(IfTaxBillInfoRequest request) {
+        IfTaxBillInfo ifTaxBillInfo = new IfTaxBillInfo();
 
-        IfTaxBillInfoKey parentKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
-        ifTaxBillInfoEntity.setIfTaxBillInfoKey(parentKey);
+        IfTaxBillInfoId parentId = new IfTaxBillInfoId(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+        ifTaxBillInfo.setId(parentId);
         request.setRegistDt(LocalDateTime.now());
-        BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
-        System.out.println(ifTaxBillInfoEntity);
-        IfTaxBillInfoEntity savedIfTaxBillInfoEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
+        BeanUtils.copyProperties(request, ifTaxBillInfo);
+        System.out.println(ifTaxBillInfo);
+        IfTaxBillInfo savedIfTaxBillInfo = ifTaxBillInfoRepository.save(ifTaxBillInfo);
 
         int seqNo = 1;
         for (IfTaxBillItemListRequest item: request.getItemList()) {
-            IfTaxBillItemListEntity listEntity = new IfTaxBillItemListEntity();
-            IfTaxBillItemListKey listKey = new IfTaxBillItemListKey(parentKey, seqNo);
-            listEntity.setIfTaxBillItemListKey(listKey);
+            IfTaxBillItemList listEntity = new IfTaxBillItemList();
+            IfTaxBillItemListId listKey =
+                new IfTaxBillItemListId(parentId.getRelSystemId(), parentId.getJobGubCode(), parentId.getManageId(), seqNo);
+            listEntity.setId(listKey);
             BeanUtils.copyProperties(item, listEntity);
             ifTaxBillItemListRepository.save(listEntity);
             //ifTaxBillInfoEntity.addIfTaxBillItemListEntity(listEntity);
             seqNo++;
         }
 
-        return savedIfTaxBillInfoEntity.getIfTaxBillInfoKey();
+        return savedIfTaxBillInfo.getId();
     }
 
 
-    public IfTaxBillInfoKey createSalesTaxParentTable(IfTaxBillInfoRequest request) {
+    public IfTaxBillInfoId createSalesTaxParentTable(IfTaxBillInfoRequest request) {
 
-        IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
+        IfTaxBillInfo ifTaxBillInfo = new IfTaxBillInfo();
 
-        IfTaxBillInfoKey ifTaxBillInfoKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
-        ifTaxBillInfoEntity.setIfTaxBillInfoKey(ifTaxBillInfoKey);
+        IfTaxBillInfoId id = new IfTaxBillInfoId(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+        ifTaxBillInfo.setId(id);
         request.setRegistDt(LocalDateTime.now());
-        BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
+        BeanUtils.copyProperties(request, ifTaxBillInfo);
 
-        System.out.println(ifTaxBillInfoEntity);
+        System.out.println(ifTaxBillInfo);
 
-        IfTaxBillInfoEntity returnEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
+        IfTaxBillInfo returnEntity = ifTaxBillInfoRepository.save(ifTaxBillInfo);
 
-        return returnEntity.getIfTaxBillInfoKey();
+        return returnEntity.getId();
 
 
     }
+
+    public List<IfTaxBillInfo> getSalesTax(String relSystemId, String jobGubCode, String manageId) {
+
+        List<IfTaxBillInfo> salesTax =
+            ifTaxBillInfoRepository.findByIdRelSystemIdAndIdJobGubCodeAndIdManageId(relSystemId, jobGubCode, manageId);
+
+        return salesTax;
+
+    }
+
+    public List<IfTaxBillItemList> getSalesTaxItemList(String relSystemId, String jobGubCode, String manageId) {
+        List<IfTaxBillItemList> salesTaxItemList =
+            ifTaxBillItemListRepository.findByIdRelSystemIdAndIdJobGubCodeAndIdManageId(relSystemId, jobGubCode, manageId);
+
+        return salesTaxItemList;
+    }
+
 
 }

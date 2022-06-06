@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @ToString
 @Table(name = "IF_TAX_BILL_ITEM_LIST")
-public class IfTaxBillItemListEntity implements Serializable {
+public class IfTaxBillItemList implements Serializable {
 
 
 
@@ -30,7 +30,7 @@ public class IfTaxBillItemListEntity implements Serializable {
 //    private IfTaxBillInfoEntity ifTaxBillInfoEntity;
 
     @EmbeddedId
-    IfTaxBillItemListKey ifTaxBillItemListKey;
+    IfTaxBillItemListId id;
 
     @Column(name = "PURCHASE_DAY")
     private String purchaseDay;

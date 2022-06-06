@@ -14,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class IfTaxBillResultInfoKey implements Serializable {
+public class IfTaxBillResultInfoId implements Serializable {
 
     @Column(name = "REL_SYSTEM_ID")
     private String relSystemId;
@@ -36,13 +36,13 @@ public class IfTaxBillResultInfoKey implements Serializable {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        IfTaxBillResultInfoKey ifTaxBillResultInfoKey = (IfTaxBillResultInfoKey) object;
+        IfTaxBillResultInfoId id = (IfTaxBillResultInfoId) object;
         return (
-            Objects.equals(relSystemId, ifTaxBillResultInfoKey.relSystemId) &&
-                Objects.equals(jobGubCode, ifTaxBillResultInfoKey.jobGubCode) &&
-                Objects.equals(manageId, ifTaxBillResultInfoKey.manageId) &&
-                Objects.equals(statusCode, ifTaxBillResultInfoKey.statusCode) &&
-                Objects.equals(registDt, ifTaxBillResultInfoKey.registDt)
+            Objects.equals(relSystemId, id.relSystemId) &&
+                Objects.equals(jobGubCode, id.jobGubCode) &&
+                Objects.equals(manageId, id.manageId) &&
+                Objects.equals(statusCode, id.statusCode) &&
+                Objects.equals(registDt, id.registDt)
         );
     }
 
