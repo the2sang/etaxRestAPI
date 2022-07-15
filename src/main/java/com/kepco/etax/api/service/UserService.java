@@ -30,7 +30,7 @@ public class UserService {
        if (user!=null) {
            return user;
        } else {
-           throw new UserNotFoundException("user not found with id:" + id);
+           throw new UserNotFoundException("사용자ID를 찾을 수 없습니다. ID:" + id);
        }
    }
 }
