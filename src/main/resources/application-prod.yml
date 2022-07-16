@@ -2,12 +2,9 @@ server:
   port: 9080
 spring:
   datasource:
-    password: keypoweredi
-    url: jdbc:oracle:thin:@janakena111.iptime.org:1521:ORCLDB
-    username: KEY_POWEREDI
-    hikari:
-      poolName: Hikari
-      auto-commit: false
+    password: key_poweredi
+    url: jdbc:postgresql://localhost:5432/key_poweredi
+    username: key_poweredi
   jpa:
     hibernate:
       ddl-auto: update

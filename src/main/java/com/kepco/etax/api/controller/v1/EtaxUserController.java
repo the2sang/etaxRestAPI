@@ -41,7 +41,8 @@ public class EtaxUserController {
                     value = "로그인 성공 후 AccessToken",
                     required = true, dataType = "String", paramType = "header")
     })
-    @ApiOperation(value = "회원 단건 검색 (이메일)", notes = "이메일로 회원을 조회합니다.") @GetMapping("/user/email/{email}")
+    @ApiOperation(value = "회원 단건 검색 (이메일)", notes = "이메일로 회원을 조회합니다.")
+    @GetMapping("/user/email/{email}")
     public SingleResult<EtaxUserResponse> findUserByEmail(@ApiParam(value = "회원 이메일", required = true) @PathVariable String email,
              @ApiParam(value = "언어", defaultValue = "ko") @RequestParam String lang) {
         return responseService.getSingleResult(userService.findByEmail(email));

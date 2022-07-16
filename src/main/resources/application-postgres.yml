@@ -7,16 +7,10 @@ spring:
     username: key_poweredi
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     generate-ddl: false
     show-sql: true
     open-in-view: true
-  freemarker:
-    template-loader-path: classpath:/templates
-    suffix: .ftl
-  messages:
-    basename: i18n/exception
-    encoding: UTF-8
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
