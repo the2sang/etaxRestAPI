@@ -26,13 +26,13 @@ public class IfTaxBillInfoEntity {
     @Column(name = "ADD_TAX_YN")
     private String addTaxYn;
 
-    @Column(name = "ISSUE_ID")
+    @Column(name = "ISSUE_ID", nullable = false)
     private String issueId;
 
-    @Column(name = "ISSUE_DAY")
+    @Column(name = "ISSUE_DAY", nullable = false)
     private String issueDay;
 
-    @Column(name = "BILL_TYPE_CODE")
+    @Column(name = "BILL_TYPE_CODE", nullable = false)
     private String billTypeCode;
 
     @Column(name = "PURPOSE_CODE")

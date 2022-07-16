@@ -32,6 +32,12 @@ public class EtaxUserService {
         return new EtaxUserResponse(user);
     }
 
+    public EtaxUserResponse findByUsername(String username) {
+        EtaxUser user = userJpaRepo.findByUsername(username)
+            .orElseThrow(EtaxUserNotFoundException::new);
+        return new EtaxUserResponse(user);
+    }
+
     @Transactional(readOnly = true)
     public EtaxUserResponse findByEmail(String email) {
         EtaxUser user = userJpaRepo.findByEmail(email)

@@ -15,6 +15,8 @@ import java.util.Collections;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EtaxUserSignupRequest {
+
+    private String username;
     private String email;
     private String password;
     private String name;
@@ -23,6 +25,7 @@ public class EtaxUserSignupRequest {
 
     public EtaxUser toEntity(PasswordEncoder passwordEncoder) {
         return EtaxUser.builder()
+            .username(username)
                 .email(email)
                 .password(passwordEncoder.encode(password))
                 .nickName(nickName)
@@ -33,6 +36,7 @@ public class EtaxUserSignupRequest {
 
     public EtaxUser toEntity() {
         return EtaxUser.builder()
+                 .username(username)
                 .email(email)
                 .nickName(nickName)
                 .name(name)

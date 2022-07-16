@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,14 +26,19 @@ public class EtaxUser extends BaseTimeEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+
+    @Column(nullable = false, unique = true, length = 20)
+    private String username;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(length = 100)
     private String password;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, length = 30)
+    @Email
     private String email;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String name;
 
     @Column(nullable = false, length = 20)

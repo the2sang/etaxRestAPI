@@ -40,8 +40,10 @@ public class LoginService {
     public TokenDto login(EtaxUserLoginRequest etaxUserLoginRequest) {
 
         // 회원 정보 존재하는지 확인
-        EtaxUser user = etaxUserRepository.findByEmail(etaxUserLoginRequest.getEmail())
-                .orElseThrow(EmailLoginFailedException::new);
+//        EtaxUser user = etaxUserRepository.findByEmail(etaxUserLoginRequest.getEmail())
+//                .orElseThrow(EmailLoginFailedException::new);
+        EtaxUser user = etaxUserRepository.findByUsername(etaxUserLoginRequest.getUsername())
+            .orElseThrow(LoginFailedException::new);
 
         // 회원 패스워드 일치 여부 확인
         if (!passwordEncoder.matches(etaxUserLoginRequest.getPassword(), user.getPassword()))

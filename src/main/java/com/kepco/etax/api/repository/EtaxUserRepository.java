@@ -14,6 +14,8 @@ public interface EtaxUserRepository extends JpaRepository<EtaxUser, Long> {
 
     Optional<EtaxUser> findByEmail(String email);
 
+    Optional<EtaxUser> findByUsername(String username);
+
     Optional<EtaxUser> findByEmailAndProvider(String email, String provider);
 }
 

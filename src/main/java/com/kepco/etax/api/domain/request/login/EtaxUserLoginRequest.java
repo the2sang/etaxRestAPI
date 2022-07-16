@@ -13,12 +13,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @NoArgsConstructor
 @Builder
 public class EtaxUserLoginRequest {
-    private String email;
+    private String username;
     private String password;
 
     public EtaxUser toUser(PasswordEncoder passwordEncoder) {
         return EtaxUser.builder()
-                .email(email)
+                .username(username)
                 .password(passwordEncoder.encode(password))
                 .build();
     }

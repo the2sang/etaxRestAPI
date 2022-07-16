@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Api(tags = {"2. CreateSaleTax"})
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -18,7 +20,7 @@ public class EtaxSalesController {
     private final EtaxSalesService etaxSalesService;
 
     @PostMapping("/createSaleTax")
-    public ResponseEntity<IfTaxBillInfoKey> createCreateSaleTax (@RequestBody IfTaxBillInfoRequest request) {
+    public ResponseEntity<IfTaxBillInfoKey> createCreateSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
         return ResponseEntity.ok(etaxSalesService.createSalesTax(request));
     }
 
