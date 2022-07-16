@@ -42,15 +42,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/createUser", "/api/v1/login",
-                        "/api/v1/reissue", "/api/v1/createSaleTax", "/api/v1/findSaleTaxOne").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/users", "/exception/**").permitAll()
-                .anyRequest().hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/api/v1/login", "/api/v1/reissue",
+                        "/api/v1/createSaleTax", "/api/v1/findSaleTaxOne").permitAll()
+                // Admin
+                .antMatchers( "/api/v1/createUser", "/api/v1/users").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                //.anyRequest().hasRole("USER")
+//                .antMatchers(HttpMethod.POST, "/api/v1/createUser", "/exception/**").permitAll()
+//                .anyRequest().hasRole("ADMIN")
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(customAuthenticationEntryPoint)
                 .accessDeniedHandler(customAccessDeniedHandler)
-
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class);
     }

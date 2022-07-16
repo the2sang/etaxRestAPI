@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -39,6 +40,7 @@ public class LoginController {
 
     @ApiOperation(value = "사용자 생성", notes = "신규 사용자를 생성합니다.")
     @PostMapping("/createUser")
+    @PreAuthorize("hasRole('ADMIN')")
     public SingleResult<Long> signup(@ApiParam(value = "회원 가입 요청 DTO", required = true) @RequestBody EtaxUserSignupRequest userSignupRequestDto) {
         Long signupId = loginService.signup(userSignupRequestDto);
         return responseService.getSingleResult(signupId);
