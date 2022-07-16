@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IfTaxBillInfoRepository extends JpaRepository<IfTaxBillInfoEntity, IfTaxBillInfoKey> {
 
-    List<IfTaxBillInfoEntity> findByRelSystemId(String relSystemId);
+    //List<IfTaxBillInfoEntity> findByRelSystemId(String relSystemId);
 }

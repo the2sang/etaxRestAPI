@@ -2,7 +2,9 @@ package com.kepco.etax.api.service;
 
 
 import com.kepco.etax.api.domain.entity.IfTaxBillInfoEntity;
+import com.kepco.etax.api.domain.entity.IfTaxBillInfoKey;
 import com.kepco.etax.api.domain.entity.IfTaxBillItemListEntity;
+import com.kepco.etax.api.domain.entity.IfTaxBillItemListKey;
 import com.kepco.etax.api.domain.request.IfTaxBillInfoRequest;
 import com.kepco.etax.api.domain.request.IfTaxBillItemListRequest;
 import com.kepco.etax.api.repository.IfTaxBillInfoRepository;
@@ -25,33 +27,47 @@ public class EtaxSalesService {
     private final IfTaxBillResultInfoRepository ifTaxBillResultInfoRepository;
 
 
-    public IfTaxBillInfoEntity createSalesTax(IfTaxBillInfoRequest request) {
+    public IfTaxBillInfoKey createSalesTax(IfTaxBillInfoRequest request) {
         IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
 
+        IfTaxBillInfoKey parentKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+        ifTaxBillInfoEntity.setIfTaxBillInfoKey(parentKey);
+        request.setRegistDt(LocalDateTime.now());
+        BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
+        System.out.println(ifTaxBillInfoEntity);
+        IfTaxBillInfoEntity savedIfTaxBillInfoEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
 
         int seqNo = 1;
-        for (IfTaxBillItemListRequest item: request.getItemListRequest()) {
-            IfTaxBillItemListEntity listEntity =
-                new IfTaxBillItemListEntity();
-            listEntity.setRelSystemId(request.getRelSystemId());
-            listEntity.setJobGubCode(request.getJobGubCode());
-            listEntity.setManageId(request.getManageId());
-
-            listEntity.setSeqNo(seqNo);
+        for (IfTaxBillItemListRequest item: request.getItemList()) {
+            IfTaxBillItemListEntity listEntity = new IfTaxBillItemListEntity();
+            IfTaxBillItemListKey listKey = new IfTaxBillItemListKey(parentKey, seqNo);
+            listEntity.setIfTaxBillItemListKey(listKey);
             BeanUtils.copyProperties(item, listEntity);
+            ifTaxBillItemListRepository.save(listEntity);
             //ifTaxBillInfoEntity.addIfTaxBillItemListEntity(listEntity);
             seqNo++;
-            ifTaxBillItemListRepository.save(listEntity);
-
         }
 
-        request.setRegistDt(LocalDateTime.now());
+        return savedIfTaxBillInfoEntity.getIfTaxBillInfoKey();
+    }
 
+
+    public IfTaxBillInfoKey createSalesTaxParentTable(IfTaxBillInfoRequest request) {
+
+        IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
+
+        IfTaxBillInfoKey ifTaxBillInfoKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+        ifTaxBillInfoEntity.setIfTaxBillInfoKey(ifTaxBillInfoKey);
+        request.setRegistDt(LocalDateTime.now());
         BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
 
         System.out.println(ifTaxBillInfoEntity);
 
-        return ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
+        IfTaxBillInfoEntity returnEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
+
+        return returnEntity.getIfTaxBillInfoKey();
+
+
     }
 
 }

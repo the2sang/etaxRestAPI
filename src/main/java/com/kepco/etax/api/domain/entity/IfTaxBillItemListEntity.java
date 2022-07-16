@@ -10,14 +10,15 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
-@IdClass(IfTaxBillItemListKey.class)
+@ToString
 @Table(name = "IF_TAX_BILL_ITEM_LIST")
 public class IfTaxBillItemListEntity implements Serializable {
 
-//    @Id
+
+
+//    @MapsId("ifTaxBillInfoKey")
 //    @ManyToOne
 //    @JoinColumns(
 //        {
@@ -27,34 +28,9 @@ public class IfTaxBillItemListEntity implements Serializable {
 //        }
 //    )
 //    private IfTaxBillInfoEntity ifTaxBillInfoEntity;
-//
-//    public IfTaxBillItemListEntity(String relSystemId, String jobGubCode, String manageId) {
-//
-//        this.ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
-//        this.ifTaxBillInfoEntity.setRelSystemId(relSystemId);
-//        this.ifTaxBillInfoEntity.setJobGubCode(jobGubCode);
-//        this.ifTaxBillInfoEntity.setManageId(manageId);
-//    }
 
-
-
-    @Id
-    @Column(name = "REL_SYSTEM_ID")
-    private String relSystemId;
-
-    @Id
-    @Column(name = "JOB_GUB_CODE")
-    private String jobGubCode;
-
-    @Id
-    @Column(name = "MANAGE_ID")
-    private String manageId;
-
-    @Id
-    @Column(name = "SEQ_NO")
-    private long seqNo;
-
-
+    @EmbeddedId
+    IfTaxBillItemListKey ifTaxBillItemListKey;
 
     @Column(name = "PURCHASE_DAY")
     private String purchaseDay;

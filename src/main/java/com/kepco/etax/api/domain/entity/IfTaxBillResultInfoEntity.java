@@ -7,32 +7,13 @@ import java.sql.Date;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
-@IdClass(IfTaxBillResultInfoKey.class)
 @Table(name = "IF_TAX_BILL_RESULT_INFO")
 public class IfTaxBillResultInfoEntity {
 
-    @Id
-    @Column(name = "REL_SYSTEM_ID")
-    private String relSystemId;
-
-    @Id
-    @Column(name = "JOB_GUB_CODE")
-    private String jobGubCode;
-
-    @Id
-    @Column(name = "MANAGE_ID")
-    private String manageId;
-
-    @Id
-    @Column(name = "STATUS_CODE")
-    private String statusCode;
-
-    @Id
-    @Column(name = "REGIST_DT")
-    private Date registDt;
+   @EmbeddedId
+   IfTaxBillResultInfoKey ifTaxBillResultInfoKey;
 
     @Column(name = "STATUS_DESC")
     private String statusDesc;
