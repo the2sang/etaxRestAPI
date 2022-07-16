@@ -8,6 +8,9 @@ spring:
     jpa:
         hibernate:
             ddl-auto: none
+        generate-ddl: false
+        show-sql: true
+        open-in-view: true
     freemarker:
         template-loader-path: classpath:/templates
         suffix: .ftl

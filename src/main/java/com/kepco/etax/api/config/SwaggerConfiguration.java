@@ -19,7 +19,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(swaggerInfo()) // API Docu 및 작성자 정보 매핑
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.restApi.restApiSpringBootApp.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.kepco.etax.api.controller"))
                 .paths(PathSelectors.any()) // controller package 전부
                 //.paths(PathSelectors.ant("/v1/**"))  // controller 패키지 내 v1만 택해서 할수도 있다.
                 .build()
@@ -27,10 +27,10 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("SpringBoot API Documentation")
-                .description("스프링부트 애플리케이션 API 설명을 위한 문서입니다.")
-                .license("woonsik")
-                .licenseUrl("helloWorld/string")
+        return new ApiInfoBuilder().title("한전 전자문서교환시스템-전자세금계산서 API 조회")
+                .description("한전 전자문서교환시스템-전자세금계산서 API 설명을 위한 문서입니다.")
+                .license("KEPCO. All Rights Reserved.")
+                .licenseUrl("open seoon/go_url")
                 .version("1")
                 .build();
     }
