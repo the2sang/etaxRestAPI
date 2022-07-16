@@ -1,0 +1,34 @@
+server:
+  port: 9080
+spring:
+  datasource:
+    password: key_poweredi
+    url: jdbc:postgresql://localhost:5432/key_poweredi
+    username: key_poweredi
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: false
+    show-sql: true
+    open-in-view: true
+  freemarker:
+    template-loader-path: classpath:/templates
+    suffix: .ftl
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+logging:
+  charset:
+    console: UTF-8
+  level:
+    root: warn
+    com.kepco.etax.api.EtaxRestApiApplication: info
+  file:
+    path: ./api/log
+
+  logback:
+    rollingpolicy:
+      max-history: 7
