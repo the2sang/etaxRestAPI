@@ -1,9 +1,6 @@
 package com.kepco.etax.api.controller;
 
-import com.kepco.etax.api.domain.Author;
-import com.kepco.etax.api.domain.entity.IfTaxBillInfoEntity;
 import com.kepco.etax.api.domain.entity.IfTaxBillInfoKey;
-import com.kepco.etax.api.domain.request.AuthorCreationRequest;
 import com.kepco.etax.api.domain.request.IfTaxBillInfoRequest;
 import com.kepco.etax.api.service.EtaxSalesService;
 import lombok.RequiredArgsConstructor;
