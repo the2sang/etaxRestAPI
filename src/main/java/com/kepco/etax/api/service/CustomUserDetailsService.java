@@ -2,7 +2,6 @@ package com.kepco.etax.api.service;
 
 
 import com.kepco.etax.api.exception.EtaxUserNotFoundException;
-import com.kepco.etax.api.exception.UserNotFoundException;
 import com.kepco.etax.api.repository.EtaxUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

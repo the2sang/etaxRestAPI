@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 //@PreAuthorize("hasRole('ROLE_USER') and hasAnyRole('ROLE_IORN', 'ROLE_SILVER', 'ROLE_GOLD', 'ROLE_BRONZE')")
-@Api(tags = {"2. User"})
+@Api(tags = {"3. User"})
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/api/v1")
 public class EtaxUserController {
 
     private final EtaxUserService userService;

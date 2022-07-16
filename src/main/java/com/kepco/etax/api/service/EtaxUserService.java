@@ -4,7 +4,6 @@ import com.kepco.etax.api.domain.entity.EtaxUser;
 import com.kepco.etax.api.domain.request.login.EtaxUserRequest;
 import com.kepco.etax.api.domain.response.EtaxUserResponse;
 import com.kepco.etax.api.exception.EtaxUserNotFoundException;
-import com.kepco.etax.api.exception.UserNotFoundException;
 import com.kepco.etax.api.repository.EtaxUserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

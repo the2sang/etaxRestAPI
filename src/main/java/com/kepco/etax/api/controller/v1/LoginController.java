@@ -18,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(tags = {"1. SignUp/LogIn"})
+@Api(tags = {"1. CreateUser/Login/TokenReissue"})
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/api/v1")
 public class LoginController {
 
     private final JwtProvider jwtProvider;
@@ -31,14 +31,14 @@ public class LoginController {
 
     @ApiOperation(value = "로그인", notes = "이메일로 로그인을 합니다.")
     @PostMapping("/login")
-    public SingleResult<TokenDto> login(@ApiParam(value = "로그인 요청 DTO", required = true) @RequestBody EtaxUserLoginRequest userLoginRequestDto) {
+    public SingleResult<TokenDto> login(@ApiParam(value = "로그인 요청", required = true) @RequestBody EtaxUserLoginRequest userLoginRequestDto) {
 
         TokenDto tokenDto = loginService.login(userLoginRequestDto);
         return responseService.getSingleResult(tokenDto);
     }
 
-    @ApiOperation(value = "회원가입", notes = "회원가입을 합니다.")
-    @PostMapping("/signup")
+    @ApiOperation(value = "사용자 생성", notes = "신규 사용자를 생성합니다.")
+    @PostMapping("/createUser")
     public SingleResult<Long> signup(@ApiParam(value = "회원 가입 요청 DTO", required = true) @RequestBody EtaxUserSignupRequest userSignupRequestDto) {
         Long signupId = loginService.signup(userSignupRequestDto);
         return responseService.getSingleResult(signupId);

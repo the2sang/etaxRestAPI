@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.kepco.etax.api.controller"))
                 .paths(PathSelectors.any()) // controller package 전부
-                //.paths(PathSelectors.ant("/v1/**"))  // controller 패키지 내 v1만 택해서 할수도 있다.
+                .paths(PathSelectors.ant("/api/v1/**"))  // controller 패키지 내 v1만 택해서 할수도 있다.
                 .build()
                 .useDefaultResponseMessages(false); // 기본 세팅값인 200, 401, 402, 403, 404를 사용하지 않는다.
     }

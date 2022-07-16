@@ -2,7 +2,6 @@ package com.kepco.etax.api.domain.request.login;
 
 
 import com.kepco.etax.api.domain.entity.EtaxUser;
-import com.kepco.etax.api.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

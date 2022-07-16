@@ -42,13 +42,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/v1/signup", "/v1/login", "v1/users",
-                        "/v1/reissue", "/v1/social/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/oauth/kakao/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/signup", "/api/v1/login", "/api/v1/users",
+                        "/api/v1/reissue", "/api/v1/createSaleTax").permitAll()
                 .antMatchers(HttpMethod.GET, "/exception/**").permitAll()
                 .anyRequest().hasRole("USER")
-
-
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(customAuthenticationEntryPoint)
