@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/signup", "/api/v1/login", "/api/v1/users",
+                .antMatchers(HttpMethod.POST, "/api/v1/createUser", "/api/v1/login", "/api/v1/users",
                         "/api/v1/reissue", "/api/v1/createSaleTax").permitAll()
                 .antMatchers(HttpMethod.GET, "/exception/**").permitAll()
                 .anyRequest().hasRole("USER")
