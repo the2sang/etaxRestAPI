@@ -2,6 +2,7 @@ package com.kepco.etax.api.config.security;
 
 import com.kepco.etax.api.domain.request.jwt.TokenDto;
 import com.kepco.etax.api.exception.AuthenticationEntryPointException;
+import com.kepco.etax.api.exception.ExpiredAccessTokenException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.Base64UrlCodec;
 import lombok.RequiredArgsConstructor;

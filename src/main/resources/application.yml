@@ -9,3 +9,6 @@ spring:
     messages:
         basename: i18n/exception
         encoding: UTF-8
+
+logging:
+    config: classpath:logback/logback-spring.xml
