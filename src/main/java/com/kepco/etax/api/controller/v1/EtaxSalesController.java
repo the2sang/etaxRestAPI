@@ -27,18 +27,14 @@ public class EtaxSalesController {
 
     private final ResponseService responseService;
 
-    private final JwtProvider jwtProvider;
-
     @PostMapping("/createSaleTax")
-    public ResponseEntity<IfTaxBillInfoKey> createCreateSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
+    public SingleResult<IfTaxBillInfoKey> createCreateSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
 
-        return ResponseEntity.ok(etaxSalesService.createSalesTax(request));
+        return responseService.getSingleResult(etaxSalesService.createSalesTax(request));
+
+       // return ResponseEntity.ok(etaxSalesService.createSalesTax(request));
     }
 
-//    @PostMapping("/createSaleTaxParentTable")
-//    public ResponseEntity<IfTaxBillInfoKey> createCreateSaleTaxEmbedded (@RequestBody IfTaxBillInfoRequest request) {
-//        return ResponseEntity.ok(etaxSalesService.createSalesTaxParentTable(request));
-//    }
 
     @GetMapping("/findSaleTaxOne")
     public SingleResult<SalsTaxResponse> findSaleTaxOne(@RequestParam String relSystemId,
