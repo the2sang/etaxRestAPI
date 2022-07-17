@@ -2,7 +2,7 @@ server:
   port: 9080
 spring:
   datasource:
-    password: key_poweredi
+    password:
     url: jdbc:log4jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON)(FAILOVER=ON)(ADDRESS=(PROTOCOL=TCP)(HOST=168.78.211.152)(PORT=21152))(ADDRESS=(PROTOCOL=TCP)(HOST=168.78.211.156)(PORT=21152)))(CONNECT_DATA=(SERVICE_NAME=CATG)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC))))
     username: KEY_POWEREDI
   jpa:
