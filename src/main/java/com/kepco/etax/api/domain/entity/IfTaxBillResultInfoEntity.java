@@ -3,7 +3,7 @@ package com.kepco.etax.api.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class IfTaxBillResultInfoEntity {
     private String statusDesc;
 
     @Column(name = "MODIFY_DT")
-    private Date modifyDt;
+    private LocalDateTime modifyDt;
 
     @Column(name = "ISSUE_ID")
     private String issueId;

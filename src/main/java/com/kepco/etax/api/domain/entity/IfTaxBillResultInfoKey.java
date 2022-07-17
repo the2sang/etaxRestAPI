@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Embeddable
@@ -29,7 +29,7 @@ public class IfTaxBillResultInfoKey implements Serializable {
     private String statusCode;
 
     @Column(name = "REGIST_DT")
-    private Date registDt;
+    private LocalDateTime registDt;
 
 
     @Override

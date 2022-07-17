@@ -9,8 +9,6 @@ import java.util.Optional;
 
 public interface IfTaxBillInfoRepository extends JpaRepository<IfTaxBillInfoEntity, IfTaxBillInfoKey> {
 
-    //List<IfTaxBillInfoEntity> findByRelSystemId(String relSystemId);
-
-  //Optional<IfTaxBillInfoEntity> findByIdManageId(String manageId, String jobGubCode);
+    List<IfTaxBillInfoEntity> findByIfTaxBillInfoKeyManageId(String manageId);
 
 }

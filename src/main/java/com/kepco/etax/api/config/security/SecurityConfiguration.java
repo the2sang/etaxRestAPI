@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/login", "/api/v1/reissue",
-                        "/api/v1/createSaleTax", "/api/v1/findSaleTaxOne").permitAll()
+                        "/api/v1/createSaleTax", "/api/v1/findSaleTaxOne", "/api/v1/findSaleTaxResultInfo").permitAll()
                 // Admin
                 .antMatchers( "/api/v1/createUser", "/api/v1/users").hasRole("ADMIN")
                 .anyRequest().authenticated()

@@ -7,6 +7,8 @@ import com.kepco.etax.api.domain.entity.IfTaxBillItemListEntity;
 import com.kepco.etax.api.domain.entity.IfTaxBillItemListKey;
 import com.kepco.etax.api.domain.request.IfTaxBillInfoRequest;
 import com.kepco.etax.api.domain.request.IfTaxBillItemListRequest;
+import com.kepco.etax.api.domain.response.IfTaxBillInfoResponse;
+import com.kepco.etax.api.domain.response.IfTaxBillResultInfoResponse;
 import com.kepco.etax.api.domain.response.SalsTaxResponse;
 import com.kepco.etax.api.exception.SaleTaxExistException;
 import com.kepco.etax.api.repository.IfTaxBillInfoRepository;
@@ -18,7 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -56,23 +59,23 @@ public class EtaxSalesService {
     }
 
 
-    public IfTaxBillInfoKey createSalesTaxParentTable(IfTaxBillInfoRequest request) {
-
-        IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
-
-        IfTaxBillInfoKey ifTaxBillInfoKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
-        ifTaxBillInfoEntity.setIfTaxBillInfoKey(ifTaxBillInfoKey);
-        request.setRegistDt(LocalDateTime.now());
-        BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
-
-        System.out.println(ifTaxBillInfoEntity);
-
-        IfTaxBillInfoEntity returnEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
-
-        return returnEntity.getIfTaxBillInfoKey();
-
-
-    }
+//    public IfTaxBillInfoKey createSalesTaxParentTable(IfTaxBillInfoRequest request) {
+//
+//        IfTaxBillInfoEntity ifTaxBillInfoEntity = new IfTaxBillInfoEntity();
+//
+//        IfTaxBillInfoKey ifTaxBillInfoKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+//        ifTaxBillInfoEntity.setIfTaxBillInfoKey(ifTaxBillInfoKey);
+//        request.setRegistDt(LocalDateTime.now());
+//        BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
+//
+//        System.out.println(ifTaxBillInfoEntity);
+//
+//        IfTaxBillInfoEntity returnEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);
+//
+//        return returnEntity.getIfTaxBillInfoKey();
+//
+//
+//    }
 
     @Transactional(readOnly = true)
     public SalsTaxResponse findSalesTaxByKey(String relSystemId, String jobGubCode, String manageId) {
@@ -87,6 +90,23 @@ public class EtaxSalesService {
                 .orElseThrow(SaleTaxExistException::new);
 
         return new SalsTaxResponse(ifTaxBillInfoEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<IfTaxBillResultInfoResponse> findSaleTaxResultInfo(String manageId) {
+        return ifTaxBillResultInfoRepository.findByIfTaxBillResultInfoKeyManageId(manageId)
+                .stream()
+                .map(IfTaxBillResultInfoResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<IfTaxBillInfoResponse> findByIfTaxBillInfoKeyManageId(String manageId) {
+
+        return ifTaxBillInfoRepository.findByIfTaxBillInfoKeyManageId(manageId)
+                .stream()
+                .map(IfTaxBillInfoResponse::new)
+                .collect(Collectors.toList());
     }
 
 }
