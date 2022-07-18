@@ -5,7 +5,6 @@ import com.kepco.etax.api.exception.AuthenticationEntryPointException;
 import com.kepco.etax.api.exception.ExpiredAccessTokenException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.Base64UrlCodec;
-import javafx.util.converter.LocalDateTimeStringConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
