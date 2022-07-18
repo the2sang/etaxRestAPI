@@ -2,9 +2,9 @@ server:
   port: 9080
 spring:
   datasource:
-    password: key_poweredi
-    url: jdbc:postgresql://localhost:5432/key_poweredi
-    username: key_poweredi
+    password: password
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
   jpa:
     hibernate:
       ddl-auto: update
