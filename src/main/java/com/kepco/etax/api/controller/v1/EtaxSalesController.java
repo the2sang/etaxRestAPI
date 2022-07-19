@@ -62,4 +62,11 @@ public class EtaxSalesController {
         return responseService.getListResult(etaxSalesService.findByIfTaxBillInfoKeyManageId(manageId));
     }
 
+    @GetMapping("findByResultInfoManageIdAndJobGubCode")
+    public ListResult<IfTaxBillResultInfoResponse> findByResultInfoManageIdAndJobGubCode(@RequestParam String manageId,
+                                                                                         @RequestParam String jobGubCode) {
+
+        return responseService.getListResult(etaxSalesService.findByResultInfoManageIdAndJobGubCodeList(manageId, jobGubCode));
+    }
+
 }
