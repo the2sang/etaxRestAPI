@@ -30,7 +30,7 @@ public class EtaxSalesController {
     private final JwtProvider jwtProvider;
 
     @PostMapping("/createSaleTax")
-    public ResponseEntity<IfTaxBillInfoKey> createCreateSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
+    public ResponseEntity<IfTaxBillInfoKey> createSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
 
         return ResponseEntity.ok(etaxSalesService.createSalesTax(request));
     }
