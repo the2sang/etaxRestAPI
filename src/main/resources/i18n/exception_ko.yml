@@ -5,7 +5,7 @@ unKnown:
 userNotFound:
   code: "-1000"
   msg: "존재하지 않는 회원입니다."
-emailLoginFailed:
+loginFailed:
   code: "-1001"
   msg: "사용자 정보가 없거나, 잘못된 비밀번호입니다."
 emailSignupFailed:

@@ -98,4 +98,14 @@ public class EtaxSalesService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<IfTaxBillResultInfoResponse> findByResultInfoManageIdAndJobGubCodeList(String manageId, String jobGubCode) {
+
+        return ifTaxBillResultInfoRepository
+                .findByIfTaxBillResultInfoKeyManageIdAndIfTaxBillResultInfoKeyJobGubCode(manageId, jobGubCode)
+                .stream()
+                .map(IfTaxBillResultInfoResponse::new)
+                .collect(Collectors.toList());
+    }
+
 }

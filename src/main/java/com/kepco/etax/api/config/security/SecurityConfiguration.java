@@ -42,10 +42,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/login", "/api/v1/reissue",
-                        "/api/v1/createSaleTax", "/api/v1/findSaleTaxOne", "/api/v1/findSaleTaxResultInfo").permitAll()
+             //    .antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/reissue",  "/api/v1/createSaleTax",
+                    "/api/v1/findSaleTaxOne", "/api/v1/findSaleTaxResultInfo", "/api/v1/createUser").hasRole("USER")
                 // Admin
-                .antMatchers( "/api/v1/createUser", "/api/v1/users").hasRole("ADMIN")
+                .antMatchers(  "/api/v1/users").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 //.anyRequest().hasRole("USER")
 //                .antMatchers(HttpMethod.POST, "/api/v1/createUser", "/exception/**").permitAll()
@@ -60,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
+        web.ignoring().antMatchers("/api/v1/login", "/api/v1/createUser","/v2/api-docs", "/swagger-resources/**",
                 "/swagger-ui.html", "/webjars/**", "/swagger/**", "/h2-console/**");
     }
 

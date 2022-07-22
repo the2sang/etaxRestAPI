@@ -47,7 +47,7 @@ public class IfTaxBillInfoEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "INVOICER_PARTY_ID")
+    @Column(name = "INVOICER_PARTY_ID", nullable = false)
     private String invoicerPartyId;
 
     @Column(name = "INVOICER_TAX_REGIST_ID")

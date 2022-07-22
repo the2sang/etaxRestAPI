@@ -59,6 +59,19 @@ public class ExceptionAdvice {
     }
 
     /***
+     * -1001
+     * 유저 이메일 로그인 실패 시 발생시키는 예외
+     */
+    @ExceptionHandler(LoginFailedException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    protected CommonResult loginFailedException(HttpServletRequest request, LoginFailedException e) {
+        return responseService.getFailResult(
+            Integer.parseInt(getMessage("loginFailed.code")), getMessage("loginFailed.msg")
+        );
+    }
+
+
+    /***
      * -1002
      * 회원 가입 시 이미 로그인 된 이메일인 경우 발생 시키는 예외
      */

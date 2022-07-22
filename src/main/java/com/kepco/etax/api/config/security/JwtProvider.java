@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.lang.String;
@@ -30,7 +32,7 @@ public class JwtProvider {
     private String secretKey;
     private String ROLES = "roles";
     private final Long accessTokenValidMillisecond = 180 * 60 * 1000L; // 3 hour
-    private final Long refreshTokenValidMillisecond = 30 * 24 * 60 * 60 * 1000L; // 30 day
+    private final Long refreshTokenValidMillisecond = 365 * 24 * 60 * 60 * 1000L; // 1 year
     private final UserDetailsService userDetailsService;
 
     @PostConstruct
@@ -50,6 +52,11 @@ public class JwtProvider {
         // 생성날짜, 만료날짜를 위한 Date
         Date now = new Date();
 
+        //엑세스 토큰 만료 날짜 포멧으로 보여주기
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+        String accessTokenExpiredDate = format.format(now.getTime() + accessTokenValidMillisecond);
+
         String accessToken = Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setClaims(claims)
@@ -68,7 +75,8 @@ public class JwtProvider {
                 .grantType("Bearer")
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .accessTokenExpireDate(accessTokenValidMillisecond)
+            .accessTokenExpireTime(accessTokenValidMillisecond)
+            .accessTokenExpireDate(accessTokenExpiredDate)
                 .build();
     }
 
