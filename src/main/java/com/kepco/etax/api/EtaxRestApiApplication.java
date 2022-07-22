@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EtaxRestApiApplication {
 
-
     private static final Logger logger = LoggerFactory.getLogger(EtaxRestApiApplication.class);
     public static void main(String[] args) {
 
