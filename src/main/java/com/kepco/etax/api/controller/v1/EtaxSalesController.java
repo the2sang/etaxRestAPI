@@ -34,31 +34,20 @@ public class EtaxSalesController {
     @PostMapping("/createSaleTax")
     public CommonResult createSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
 
-        SalsTaxResponse response =
-                etaxSalesService.findSalesTaxByKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+//        etaxSalesService.findSalesTaxByKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+        IfTaxBillInfoKey key = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(),request.getManageId());
 
-        if (response != null) {
-
+        if (etaxSalesService.existIfTaxBillInfoByKey(key)) {
             return responseService.getFailResult(-1010, "이미 생성된 데이터가 있습니다.");
         }
 
         return responseService.getSingleResult(etaxSalesService.createSalesTax(request));
     }
 
-//    @PostMapping("/createSaleTaxParentTable")
-//    public ResponseEntity<IfTaxBillInfoKey> createCreateSaleTaxEmbedded (@RequestBody IfTaxBillInfoRequest request) {
-//        return ResponseEntity.ok(etaxSalesService.createSalesTaxParentTable(request));
-//    }
-
     @GetMapping("/findSaleTaxOne")
     public SingleResult<SalsTaxResponse> findSaleTaxOne(@RequestParam String relSystemId,
                                                         @RequestParam String jobGubCode,
                                                         @RequestParam String manageId) {
-//        String accessKey = req.getHeader("X-AUTH-TOKEN");
-//
-//        if (!jwtProvider.validationToken(accessKey)) {
-//            throw new ExpiredAccessTokenException();
-//        }
 
         return responseService.getSingleResult(etaxSalesService.findSalesTaxByKey(relSystemId, jobGubCode, manageId));
     }

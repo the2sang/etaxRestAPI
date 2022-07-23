@@ -35,10 +35,10 @@ public class EtaxReverseTaxController {
     @PostMapping("/createReverseTaxHeader")
     public CommonResult createReverseTaxHeader(@RequestBody @Valid EaiTaxHeaderInfoRequest request) {
 
-        EaiTaxHeaderInfoResponse response = etaxReverseTaxService.findReverseTaxHeaderByKey(request.getBizNo(),
-                request.getConsNo(), request.getReqNo());
+        EaiTaxHeaderInfoKey key = new EaiTaxHeaderInfoKey(request.getBizNo(), request.getConsNo(), request.getReqNo());
 
-        if (response != null) return responseService.getFailResult(-1010, "이미 생성된 데이터가 있습니다.");
+        if (etaxReverseTaxService.existReverseTaxHeaderByKey(key))
+            return responseService.getFailResult(-1010, "이미 생성된 데이터가 있습니다.");
 
         return responseService.getSingleResult(etaxReverseTaxService.createReverseTaxHeader(request));
     }
@@ -52,9 +52,11 @@ public class EtaxReverseTaxController {
     @PostMapping("/createReverseTaxDetail")
     public CommonResult createReverseTaxDetail(@RequestBody @Valid EaiTaxDetailInfoRequest request) {
 
-        EaiTaxDetailInfoResponse response = etaxReverseTaxService.findReverseTaxDetailByKey(request.getBizNo(), request.getConsNo(), request.getReqNo(), request.getAcptno(), request.getConsKndCd());
+        EaiTaxDetailInfoKey key = new EaiTaxDetailInfoKey(request.getBizNo(), request.getConsNo(), request.getReqNo(),
+                request.getAcptno(), request.getConsKndCd());
 
-        if (response != null) return responseService.getFailResult(-1010, "이미 생성된 데이터가 있습니다.");
+        if (etaxReverseTaxService.existReverseTaxDetailByKey(key))
+            return responseService.getFailResult(-1010, "이미 생성된 데이터가 있습니다.");
 
         return responseService.getSingleResult(etaxReverseTaxService.createReverseTaxDetail(request));
     }

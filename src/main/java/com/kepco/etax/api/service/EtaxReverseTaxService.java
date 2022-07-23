@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -76,8 +77,8 @@ public class EtaxReverseTaxService {
 
         EaiTaxDetailInfoEntity entity = new EaiTaxDetailInfoEntity();
 
-        EaiTaxDetailInfoKey key = new EaiTaxDetailInfoKey(request.getBizNo(), request.getConsNo(), request.getReqNo(),
-                request.getAcptno(), request.getConsKndCd());
+        EaiTaxDetailInfoKey key = new EaiTaxDetailInfoKey(request.getBizNo(), request.getConsNo(), 
+                request.getReqNo(), request.getAcptno(), request.getConsKndCd());
         entity.setEaiTaxDetailInfoKey(key);
         BeanUtils.copyProperties(request, entity);
         EaiTaxDetailInfoEntity savedEntity = eaiTaxDetailInfoRepository.save(entity);
@@ -141,7 +142,17 @@ public class EtaxReverseTaxService {
         EaiTaxDetailInfoEntity entity = eaiTaxDetailInfoRepository.findById(key)
                 .orElseThrow(EntityExistException::new);
 
-        return new EaiTaxDetailInfoResponse((entity));
+        return  new EaiTaxDetailInfoResponse((entity));
+    }
+
+    public boolean existReverseTaxHeaderByKey(EaiTaxHeaderInfoKey key) {
+
+        return eaiTaxHeaderInfoRepository.existsById(key);
+    }
+
+    public boolean existReverseTaxDetailByKey(EaiTaxDetailInfoKey key) {
+
+       return eaiTaxDetailInfoRepository.existsById(key);
     }
 
 }

@@ -108,4 +108,8 @@ public class EtaxSalesService {
                 .collect(Collectors.toList());
     }
 
+    public boolean existIfTaxBillInfoByKey(IfTaxBillInfoKey key) {
+        return ifTaxBillInfoRepository.existsById(key);
+    }
+
 }
