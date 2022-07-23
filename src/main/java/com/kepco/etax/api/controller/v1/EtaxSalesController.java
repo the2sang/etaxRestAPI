@@ -1,9 +1,11 @@
 package com.kepco.etax.api.controller.v1;
 
 import com.kepco.etax.api.config.security.JwtProvider;
+import com.kepco.etax.api.domain.entity.IfTaxBillInfoEntity;
 import com.kepco.etax.api.domain.entity.IfTaxBillInfoKey;
 import com.kepco.etax.api.domain.request.IfTaxBillInfoRequest;
 import com.kepco.etax.api.domain.response.*;
+import com.kepco.etax.api.exception.EntityExistException;
 import com.kepco.etax.api.exception.ExpiredAccessTokenException;
 import com.kepco.etax.api.service.EtaxSalesService;
 import com.kepco.etax.api.service.ResponseService;
@@ -30,9 +32,17 @@ public class EtaxSalesController {
     private final JwtProvider jwtProvider;
 
     @PostMapping("/createSaleTax")
-    public ResponseEntity<IfTaxBillInfoKey> createSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
+    public CommonResult createSaleTax (@RequestBody @Valid IfTaxBillInfoRequest request) {
 
-        return ResponseEntity.ok(etaxSalesService.createSalesTax(request));
+        SalsTaxResponse response =
+                etaxSalesService.findSalesTaxByKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
+
+        if (response != null) {
+
+            return responseService.getFailResult(-1010, "이미 생성된 데이터가 있습니다.");
+        }
+
+        return responseService.getSingleResult(etaxSalesService.createSalesTax(request));
     }
 
 //    @PostMapping("/createSaleTaxParentTable")

@@ -44,7 +44,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
              //    .antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/reissue",  "/api/v1/createSaleTax",
-                    "/api/v1/findSaleTaxOne", "/api/v1/findSaleTaxResultInfo", "/api/v1/createUser").hasRole("USER")
+                    "/api/v1/findSaleTaxOne", "/api/v1/findSaleTaxResultInfo", "/api/v1/createUser",
+                        "/api/v1/createReverseTaxHeader", "/api/v1/createReverseTaxHeaderBulk",
+                        "/api/v1/createReverseTaxDetail", "/api/v1/createReverseTaxHeaderBulk").hasRole("USER")
                 // Admin
                 .antMatchers(  "/api/v1/users").hasRole("ADMIN")
                 .anyRequest().authenticated()

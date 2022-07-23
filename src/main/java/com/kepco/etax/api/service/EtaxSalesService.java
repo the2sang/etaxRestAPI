@@ -44,7 +44,7 @@ public class EtaxSalesService {
 
         IfTaxBillInfoKey parentKey = new IfTaxBillInfoKey(request.getRelSystemId(), request.getJobGubCode(), request.getManageId());
         ifTaxBillInfoEntity.setIfTaxBillInfoKey(parentKey);
-        request.setRegistDt(LocalDateTime.now());
+//        request.setRegistDt(LocalDateTime.now());
         BeanUtils.copyProperties(request, ifTaxBillInfoEntity);
         System.out.println(ifTaxBillInfoEntity);
         IfTaxBillInfoEntity savedIfTaxBillInfoEntity = ifTaxBillInfoRepository.save(ifTaxBillInfoEntity);

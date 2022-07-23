@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -179,14 +180,16 @@ public class IfTaxBillInfoEntity {
     @Column(name = "FLG")
     private String flg;
 
-    @Column(name = "REGIST_DT")
-    private LocalDateTime registDt;
-
-    @Column(name = "MODIFY_DT")
-    private LocalDateTime modifyDt;
-
-    @Column(name = "CANCEL_DT")
-    private LocalDateTime cancelDt;
+//    @Column(name = "REGIST_DT", nullable = false)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+//    private LocalDateTime registDt;
+//
+//    @Column(name = "MODIFY_DT", nullable = false)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+//    private LocalDateTime modifyDt;
+//
+//    @Column(name = "CANCEL_DT")
+//    private LocalDateTime cancelDt;
 
     @Column(name = "EAI_STAT")
     private String eaiStat;

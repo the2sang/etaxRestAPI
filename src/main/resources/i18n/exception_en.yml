@@ -2,6 +2,9 @@
 unKnown:
   code: "-9999"
   msg: "An unknown error has occurred."
+sqlException:
+  code: "-8888, sqlException"
+  msg: "SQL DB Error"
 userNotFound:
   code: "-1000"
   msg: "This member not exist"
@@ -32,3 +35,6 @@ userExistException:
 agreementException:
   code: "-1009"
   msg: "A consent is required for the required consent item."
+existData:
+  code: "-1010"
+  msg: "Already saved data, please check."

@@ -10,9 +10,9 @@ spring:
       auto-commit: false
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     generate-ddl: false
-    show-sql: true
+    show-sql: false
     open-in-view: true
   mvc:
     pathmatch:

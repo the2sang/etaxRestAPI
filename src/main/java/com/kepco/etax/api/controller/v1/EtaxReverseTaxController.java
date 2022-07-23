@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Api(tags = {"3. CreateReverseTax"})
 @RestController
@@ -33,9 +34,19 @@ public class EtaxReverseTaxController {
         return ResponseEntity.ok(etaxReverseTaxService.createReverseTaxHeader(request));
     }
 
+    @PostMapping("/createReverseTaxHeaderBulk")
+    public ResponseEntity<String> createReverseTaxHeaderBulk(@RequestBody @Valid List<EaiTaxHeaderInfoRequest> request) {
+        return ResponseEntity.ok(etaxReverseTaxService.createReverseTaxHeaderBulk(request));
+    }
+
     @PostMapping("/createReverseTaxDetail")
     public ResponseEntity<EaiTaxDetailInfoKey> createReverseTaxDetail(@RequestBody @Valid EaiTaxDetailInfoRequest request) {
         return ResponseEntity.ok(etaxReverseTaxService.createReverseTaxDetail(request));
+    }
+
+    @PostMapping("/createReverseTaxDetailBulk")
+    public ResponseEntity<String> createReverseTaxDetailBulk(@RequestBody @Valid List<EaiTaxDetailInfoRequest> request) {
+        return ResponseEntity.ok(etaxReverseTaxService.createReverseTaxDetailBulk(request));
     }
 
 

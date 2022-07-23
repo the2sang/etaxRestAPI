@@ -135,9 +135,9 @@ public class IfTaxBillInfoResponse {
         this.payDeadline  = data.getPayDeadline();
         this.onlineGubCode  = data.getOnlineGubCode();
         this.flg  = data.getFlg();
-        this.registDt  = data.getRegistDt();
-        this.modifyDt  = data.getModifyDt();
-        this.cancelDt  = data.getCancelDt();
+//        this.registDt  = data.getRegistDt();
+//        this.modifyDt  = data.getModifyDt();
+//        this.cancelDt  = data.getCancelDt();
         this.eaiStat  = data.getEaiStat();
         this.eaiCdate  = data.getEaiCdate();
         this.eaiUdate  = data.getEaiUdate();
