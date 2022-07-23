@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -31,14 +32,25 @@ public class JwtProvider {
     @Value("spring.jwt.secret")
     private String secretKey;
     private String ROLES = "roles";
-    private final Long accessTokenValidMillisecond = 180 * 60 * 1000L; // 3 hour
-    private final Long refreshTokenValidMillisecond = 365 * 24 * 60 * 60 * 1000L; // 1 year
+    private  Long accessTokenValidMillisecond =   60 * 1000L; // 60초
+    private  Long refreshTokenValidMillisecond =  24 * 60 * 60 * 1000L; // 1일
+
+    @Value("${jwt.access.expiration}")
+    private  String acessExpiration;
+
+    @Value("${jwt.refresh.expiration}")
+    private  String refreshExpiration;
     private final UserDetailsService userDetailsService;
 
     @PostConstruct
     protected void init() {
         // 암호화
         secretKey = Base64UrlCodec.BASE64URL.encode(secretKey.getBytes(StandardCharsets.UTF_8));
+
+        // application.yml 에서 설정 값 가져와서 엑세스, 리플레시 타임 재조정..
+        accessTokenValidMillisecond = accessTokenValidMillisecond * new Integer(acessExpiration).intValue();
+        refreshTokenValidMillisecond = refreshTokenValidMillisecond * new Integer(refreshExpiration).intValue();
+
 //        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
