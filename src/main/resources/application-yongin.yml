@@ -2,8 +2,8 @@ server:
   port: 9080
 spring:
   datasource:
-    password:
-    url: jdbc:oracle:thin:@the2sang.iptime.org:1521:ORCLDB
+    password: keypoweredi
+    url: jdbc:oracle:thin:@janakena111.iptime.org:1521:ORCLDB
     username: KEY_POWEREDI
     hikari:
       poolName: Hikari

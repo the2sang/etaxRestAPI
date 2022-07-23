@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class EaiTaxDetailInfoEntity {
 
     @EmbeddedId
-    EaiTaxDetailInfoKey eaiTaxDetailInfoKey;
+    private EaiTaxDetailInfoKey eaiTaxDetailInfoKey;
 
     @Column(name = "ACPT_KND_NM")
     private String acptKndNm;
