@@ -13,3 +13,9 @@ spring:
 logging:
     config: classpath:logback/logback-spring.xml
 
+jwt:
+    access:
+        expiration: 180 # 3시간 600 * 3
+    refresh:
+        expiration: 365 # 1년
+

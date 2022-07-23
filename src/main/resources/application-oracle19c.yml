@@ -10,7 +10,7 @@ spring:
       auto-commit: false
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     generate-ddl: false
     show-sql: false
     open-in-view: true
