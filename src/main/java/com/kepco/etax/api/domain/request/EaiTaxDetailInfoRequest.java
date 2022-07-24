@@ -21,7 +21,7 @@ public class EaiTaxDetailInfoRequest {
     @ApiModelProperty(value = "공사종류코드", example = "01~XX-2", required = true)
     private String consKndCd;
 
-@ApiModelProperty(value = "접수종류명", example = "한글-60" )
+    @ApiModelProperty(value = "접수종류명", example = "한글-60" )
     private String acptKndNm;
 
     @ApiModelProperty(value = "금액", example = "계기공사비(내선계기), 공급가액(영업검침, 조류, PPA)-18")
