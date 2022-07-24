@@ -1,7 +1,6 @@
 package com.kepco.etax.api.service;
 
 
-import com.kepco.etax.api.config.security.JwtProvider;
 import com.kepco.etax.api.domain.entity.IfTaxBillInfoEntity;
 import com.kepco.etax.api.domain.entity.IfTaxBillInfoKey;
 import com.kepco.etax.api.domain.entity.IfTaxBillItemListEntity;
@@ -15,21 +14,17 @@ import com.kepco.etax.api.exception.*;
 import com.kepco.etax.api.repository.IfTaxBillInfoRepository;
 import com.kepco.etax.api.repository.IfTaxBillItemListRepository;
 import com.kepco.etax.api.repository.IfTaxBillResultInfoRepository;
-import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class EtaxSalesService {
+public class EtaxSalesTaxService {
 
     private final IfTaxBillInfoRepository ifTaxBillInfoRepository;
 
