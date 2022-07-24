@@ -5,10 +5,6 @@ import lombok.Data;
 @Data
 public class IfTaxBillItemListRequest {
 
-//    private String relSystemId;
-//    private String jobGubCode;
-//    private String manageId;
-//    private long seqNo;
     private String purchaseDay;
     private String itemName;
     private String itemInfo;
